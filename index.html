@@ -18,6 +18,15 @@
 
 <link rel="preload" href="fonts/PlayfairDisplay-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Poppins-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://app.trysoro.com/api/embed/c5228703-9f48-4d86-b9ae-ea922c4627b5" as="script">
+
+<script>
+  // On article deep-links the embed renders the article view, so don't
+  // flash the baked list first.
+  if (new URLSearchParams(location.search).has("post")) {
+    document.documentElement.classList.add("soro-article-mode");
+  }
+</script>
 
 <style>
   @font-face {
@@ -215,6 +224,8 @@
   main { padding: 4.5rem 0 5.5rem; }
 
   #soro-blog { max-width: var(--read); margin: 0 auto; min-height: 22rem; }
+
+  .soro-article-mode .soro-static { display: none; }
 
   #soro-blog .soro-blog {
     max-width: 100%;
@@ -495,7 +506,7 @@
 
 <main>
   <div class="wrap">
-    <div id="soro-blog"></div>
+    <div id="soro-blog"><!-- soro-static:start --><div class="soro-static"><div class="soro-blog"><div class="soro-blog-content"><section class="soro-blog-list" role="feed" aria-label="Artigos do blog"><a href="/?post=moda-autoral-vestir-nordeste-vivo" class="soro-blog-card" data-slug="moda-autoral-vestir-nordeste-vivo" itemscope itemtype="https://schema.org/BlogPosting"><img class="soro-blog-card-image" src="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/c742834e-1610-45eb-9759-2f546bfff0bb/ead3b14d-a947-442f-9551-d976d77333e8.webp" srcset="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/render/image/public/featured-images/c742834e-1610-45eb-9759-2f546bfff0bb/ead3b14d-a947-442f-9551-d976d77333e8.webp?width=480&quality=75&resize=contain 480w, https://afocirmbqdxnkyescnev.supabase.co/storage/v1/render/image/public/featured-images/c742834e-1610-45eb-9759-2f546bfff0bb/ead3b14d-a947-442f-9551-d976d77333e8.webp?width=960&quality=75&resize=contain 960w" sizes="(max-width: 720px) 100vw, 240px" alt="Moda autoral para vestir o Nordeste vivo" loading="eager" fetchpriority="high" data-tuned="1" itemprop="image"><div class="soro-blog-card-content"><h2 class="soro-blog-card-title" itemprop="headline">Moda autoral para vestir o Nordeste vivo</h2><p class="soro-blog-card-excerpt" itemprop="description">Moda autoral transforma cultura em roupa: conheça estampas, memória e qualidade em peças nordestinas feitas para vestir pertencimento todos os dias.</p><time class="soro-blog-card-date" datetime="2026-07-14T20:24:35.679+00:00" itemprop="datePublished">14 de julho de 2026</time></div></a></section></div></div></div><!-- soro-static:end --></div>
     <script>
       // Soro lazy-loads every card image and serves them at full resolution;
       // the first one is the largest paint. Promote it, and swap card
