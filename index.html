@@ -13,11 +13,49 @@
 <meta property="og:image" content="https://blog.sertaoprofundo.com/logo.webp">
 <meta property="og:url" content="https://blog.sertaoprofundo.com">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://app.trysoro.com" crossorigin>
+<link rel="preconnect" href="https://afocirmbqdxnkyescnev.supabase.co" crossorigin>
+
+<link rel="preload" href="fonts/PlayfairDisplay-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Poppins-300.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
+  @font-face {
+    font-family: "Playfair Display";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(fonts/PlayfairDisplay-500.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: "Playfair Display";
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url(fonts/PlayfairDisplay-500-italic.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(fonts/Poppins-300.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(fonts/Poppins-400.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(fonts/Poppins-500.woff2) format("woff2");
+  }
+
   :root {
     --ink: #0d0c0c;
     --ink-soft: #4a4744;
@@ -176,7 +214,7 @@
 
   main { padding: 4.5rem 0 5.5rem; }
 
-  #soro-blog { max-width: var(--read); margin: 0 auto; }
+  #soro-blog { max-width: var(--read); margin: 0 auto; min-height: 22rem; }
 
   #soro-blog .soro-blog {
     max-width: 100%;
@@ -423,6 +461,8 @@
     #soro-blog .soro-blog-card-image { aspect-ratio: 16 / 9; }
 
     #soro-blog .soro-blog-card-title { font-size: 1.45rem; }
+
+    #soro-blog { min-height: 30rem; }
   }
 </style>
 </head>
@@ -456,6 +496,27 @@
 <main>
   <div class="wrap">
     <div id="soro-blog"></div>
+    <script>
+      // Soro lazy-loads every card image and serves them at full resolution;
+      // the first one is the largest paint. Promote it, and swap card
+      // thumbnails to Supabase's resize endpoint (240px slot @2x = 480px).
+      new MutationObserver(() => {
+        document.querySelectorAll("#soro-blog img:not([data-tuned])").forEach((img, i) => {
+          img.dataset.tuned = "1";
+          if (img.classList.contains("soro-blog-card-image") && img.src.includes("/storage/v1/object/public/")) {
+            const original = img.src;
+            const resized = w => original.replace("/storage/v1/object/public/", "/storage/v1/render/image/public/") + "?width=" + w + "&quality=75&resize=contain";
+            img.onerror = () => { img.onerror = null; img.removeAttribute("srcset"); img.removeAttribute("sizes"); img.src = original; };
+            img.sizes = "(max-width: 720px) 100vw, 240px";
+            img.srcset = resized(480) + " 480w, " + resized(960) + " 960w";
+          }
+          if (i === 0) {
+            img.loading = "eager";
+            img.fetchPriority = "high";
+          }
+        });
+      }).observe(document.getElementById("soro-blog"), { childList: true, subtree: true });
+    </script>
     <script src="https://app.trysoro.com/api/embed/c5228703-9f48-4d86-b9ae-ea922c4627b5" defer></script>
   </div>
 </main>
