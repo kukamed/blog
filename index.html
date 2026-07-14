@@ -1,25 +1,478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog</title>
-  <style>
-    body {
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      max-width: 720px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #1a1a1a;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário · Sertão Profundo</title>
+<meta name="description" content="Histórias de moda autoral, cultura e memória do Nordeste — o diário do Ateliê Sertão Profundo.">
+<link rel="icon" href="logo.webp">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diário · Sertão Profundo">
+<meta property="og:description" content="Histórias de moda autoral, cultura e memória do Nordeste.">
+<meta property="og:image" content="https://blog.sertaoprofundo.com/logo.webp">
+<meta property="og:url" content="https://blog.sertaoprofundo.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0d0c0c;
+    --ink-soft: #4a4744;
+    --ink-faint: #8a8580;
+    --paper: #ffffff;
+    --sand: #f7f5f2;
+    --rule: #e4e0da;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --wide: 1120px;
+    --read: 860px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .masthead .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 76px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .brand img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .brand-sub {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 0.2rem;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .nav a {
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav a:hover { color: #fff; }
+
+  .nav a.pill {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 0.5rem 1.2rem;
+    color: #fff;
+  }
+
+  .nav a.pill:hover {
+    background: #fff;
+    color: var(--ink);
+    border-color: #fff;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    background: var(--sand);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+    padding: 5.5rem 0 4.5rem;
+  }
+
+  .kicker {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 1.4rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.9rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 auto 1.4rem;
+    max-width: 14ch;
+  }
+
+  .hero p {
+    max-width: 46ch;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+  }
+
+  .hero .flourish {
+    width: 44px;
+    height: 1px;
+    background: var(--ink);
+    opacity: 0.25;
+    margin: 2.4rem auto 0;
+  }
+
+  /* ---------- Soro embed ---------- */
+
+  main { padding: 4.5rem 0 5.5rem; }
+
+  #soro-blog { max-width: var(--read); margin: 0 auto; }
+
+  #soro-blog .soro-blog {
+    max-width: 100%;
+    font-family: var(--sans);
+    color: var(--ink);
+  }
+
+  /* back link → pill button */
+  #soro-blog .soro-blog-header { margin-bottom: 2.5rem; }
+
+  #soro-blog .soro-blog-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.5rem 1.15rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+  }
+
+  #soro-blog .soro-blog-back:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  /* list → editorial rows */
+  #soro-blog .soro-blog-list {
+    display: block;
+    border-top: 1px solid var(--rule);
+  }
+
+  #soro-blog .soro-blog-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.2rem;
+    align-items: center;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 2.4rem 0;
+    transition: none;
+  }
+
+  #soro-blog .soro-blog-card:hover {
+    transform: none;
+    box-shadow: none;
+    background: none;
+  }
+
+  #soro-blog .soro-blog-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: saturate(0.92);
+    transition: filter 0.4s ease, opacity 0.4s ease;
+  }
+
+  #soro-blog .soro-blog-card:hover .soro-blog-card-image {
+    filter: saturate(1.05);
+  }
+
+  #soro-blog .soro-blog-card-content { padding: 0; }
+
+  #soro-blog .soro-blog-card-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.72rem;
+    line-height: 1.24;
+    letter-spacing: -0.005em;
+    margin: 0 0 0.7rem;
+    color: var(--ink);
+    background-image: linear-gradient(var(--ink), var(--ink));
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    display: inline;
+  }
+
+  #soro-blog .soro-blog-card:hover .soro-blog-card-title {
+    background-size: 100% 1px;
+  }
+
+  #soro-blog .soro-blog-card-excerpt {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.72;
+    color: var(--ink-soft);
+    margin: 0.9rem 0 1.1rem;
+  }
+
+  #soro-blog .soro-blog-card-date,
+  #soro-blog time {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* article view */
+  #soro-blog h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    line-height: 1.16;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.1rem;
+  }
+
+  #soro-blog h2,
+  #soro-blog h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 2.8rem 0 0.9rem;
+  }
+
+  #soro-blog h2 { font-size: 1.85rem; }
+  #soro-blog h3 { font-size: 1.35rem; }
+
+  #soro-blog p {
+    font-size: 1.06rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #262321;
+    margin: 0 0 1.5rem;
+  }
+
+  #soro-blog img { max-width: 100%; height: auto; border-radius: 2px; }
+
+  #soro-blog .soro-blog-article-date { margin-bottom: 0; }
+
+  #soro-blog .soro-blog-article-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin: 2rem 0 3rem;
+  }
+
+  #soro-blog blockquote {
+    margin: 2.4rem 0;
+    padding: 0.3rem 0 0.3rem 1.7rem;
+    border-left: 2px solid var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  #soro-blog a { color: var(--ink); }
+
+  #soro-blog .soro-blog-content a:not(.soro-blog-card) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  .footer {
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.65);
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+
+  .footer img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    margin-bottom: 1.4rem;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    color: #fff;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin: 1.8rem 0;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover { color: #fff; }
+
+  .footer-meta {
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  /* ---------- Mobile ---------- */
+
+  @media (max-width: 720px) {
+    .masthead .wrap {
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
     }
-    @media (prefers-color-scheme: dark) {
-      body { background: #111; color: #eee; }
+
+    .nav { gap: 1.1rem; }
+
+    .hero { padding: 3.5rem 0 3rem; }
+
+    main { padding: 3rem 0 4rem; }
+
+    #soro-blog .soro-blog-card {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      padding: 2rem 0;
     }
-  </style>
+
+    #soro-blog .soro-blog-card-image { aspect-ratio: 16 / 9; }
+
+    #soro-blog .soro-blog-card-title { font-size: 1.45rem; }
+  }
+</style>
 </head>
 <body>
-  <div id="soro-blog"></div>
-  <script src="https://app.trysoro.com/api/embed/c5228703-9f48-4d86-b9ae-ea922c4627b5" defer></script>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="logo.webp" alt="">
+      <span class="brand-name">
+        Sertão Profundo
+        <span class="brand-sub">Diário</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="https://www.instagram.com/sertaoprofundo/" target="_blank" rel="noopener">Instagram</a>
+      <a class="pill" href="https://atelie.sertaoprofundo.com">Ateliê</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Diário do Ateliê</p>
+    <h1>Histórias que vestem o Nordeste</h1>
+    <p>Moda autoral, cultura e memória — sobre as pessoas, os ofícios e os lugares que dão origem a cada peça.</p>
+    <div class="flourish"></div>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+    <div id="soro-blog"></div>
+    <script src="https://app.trysoro.com/api/embed/c5228703-9f48-4d86-b9ae-ea922c4627b5" defer></script>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <img src="logo.webp" alt="">
+    <p class="footer-name">Sertão Profundo</p>
+    <p class="footer-meta">Campina Grande · Paraíba</p>
+    <div class="footer-links">
+      <a href="https://atelie.sertaoprofundo.com">Ateliê</a>
+      <a href="https://www.instagram.com/sertaoprofundo/" target="_blank" rel="noopener">Instagram</a>
+      <a href="/">Diário</a>
+    </div>
+    <p class="footer-meta">© 2026 Ateliê Sertão Profundo</p>
+  </div>
+</footer>
+
 </body>
 </html>
