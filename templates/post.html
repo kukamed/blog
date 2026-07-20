@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}} · Sertão Profundo</title>
+<meta name="description" content="{{excerpt}}">
+<link rel="icon" href="/logo.webp">
+<link rel="canonical" href="{{site}}/posts/{{slug}}/">
+<link rel="alternate" type="application/rss+xml" title="Diário · Sertão Profundo" href="/feed.xml">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{excerpt}}">
+<meta property="og:image" content="{{site}}{{image}}">
+<meta property="og:url" content="{{site}}/posts/{{slug}}/">
+<meta property="article:published_time" content="{{iso}}">
+
+<link rel="preload" href="/fonts/PlayfairDisplay-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Poppins-300.woff2" as="font" type="font/woff2" crossorigin>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{title}}",
+  "description": "{{excerpt}}",
+  "image": "{{site}}{{image}}",
+  "datePublished": "{{iso}}",
+  "url": "{{site}}/posts/{{slug}}/",
+  "publisher": { "@type": "Organization", "name": "Ateliê Sertão Profundo" }
+}
+</script>
+
+<style>
+{{styles}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.webp" alt="">
+      <span class="brand-name">
+        Sertão Profundo
+        <span class="brand-sub">Diário</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="https://www.instagram.com/sertaoprofundo/" target="_blank" rel="noopener">Instagram</a>
+      <a class="pill" href="https://atelie.sertaoprofundo.com">Ateliê</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="article">
+      <a class="back-pill" href="/">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Todos os artigos
+      </a>
+      <header>
+        <h1>{{title}}</h1>
+        <time class="article-date" datetime="{{iso}}">{{date}}</time>
+      </header>
+      <img class="article-image" src="{{image}}" alt="{{title}}" width="1536" height="1024" fetchpriority="high">
+      <div class="article-body">
+{{content}}
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <img src="/logo.webp" alt="">
+    <p class="footer-name">Sertão Profundo</p>
+    <p class="footer-meta">Campina Grande · Paraíba</p>
+    <div class="footer-links">
+      <a href="https://atelie.sertaoprofundo.com">Ateliê</a>
+      <a href="https://www.instagram.com/sertaoprofundo/" target="_blank" rel="noopener">Instagram</a>
+      <a href="/">Diário</a>
+    </div>
+    <p class="footer-meta">© 2026 Ateliê Sertão Profundo</p>
+  </div>
+</footer>
+
+</body>
+</html>
